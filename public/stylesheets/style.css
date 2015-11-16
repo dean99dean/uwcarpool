@@ -96,3 +96,7 @@ a {
 .inv:hover {
     background-color: #faf2cc;
 }
+
+.inviter {
+    display:inline;
+}
