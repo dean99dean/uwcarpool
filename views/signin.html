@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>UW Carpool</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link typ e="text/css" rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">
+    <link type="text/css" rel="stylesheet" href="stylesheets/style.css">
+    <!--<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>-->
+    </head>
+
+    <body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand"  href="/">
+                    UW CARPOOL
+                </a>
+            </div>
+
+
+
+
+
+        </div>
+    </nav>
+
+    <div class = "container">
+    <div id = "sign" class="box">
+        <p>If you have a User Name and Password, Please Sign in:</p>
+        <form method = "post" action = "/sign">
+            <div class="form-group">
+                <label for="username">UserName:</label>
+                <input type = "text" name = "username" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+
+
+            <input class = "btn btn-primary" type = "submit" name = "submit" />
+        </form>
+    </div>
+
+    <div id = "signup" class = "box">
+
+        <p>If you do not have a Username, Please Sign up:</p>
+
+        <form action = '/signup' method = 'post'>
+            <label for="username">UserName:</label>
+            <input type = "text" name = "username" class="form-control" placeholder="Username">
+            <br/>
+            <label for="password">Password:</label>
+           <input type = "text" name = "password"  class="form-control" placeholder="Password">
+            <br/>
+            <label for="reenterpassword">Re-enter Password:</label>
+             <input type = "text" name = "verify"  class="form-control" placeholder="Re-enter Password">
+            <br/>
+            <input class = "btn btn-primary" type = "submit" name = "submit" />
+        </form>
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src = "javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src = "javascripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src = "javascripts/angular.min.js"></script>
+    </body>
