@@ -12,8 +12,13 @@
     "debug": "~2.2.0",
     "ejs": "^2.3.4",
     "express": "~4.13.1",
+    "install": "^0.4.0",
     "jade": "~1.11.0",
+    "mongoose": "^4.2.10",
     "morgan": "~1.6.1",
+    "npm": "^3.5.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.0"
   }
 }

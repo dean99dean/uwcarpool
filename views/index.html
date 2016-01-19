@@ -1,121 +1,165 @@
 <!DOCTYPE html>
 
-<html>
-	<head>
-		<title>UW Carpool</title>
-		<meta charset="utf-8">
-   	 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-   		<meta name="viewport" content="width=device-width, initial-scale=1">
-   	 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-   		<meta name="viewport" content="width=device-width, initial-scale=1">
-   		<link type="text/css" rel="stylesheet" href="stylesheets/bootstrap.min.css">
-   		<link type="text/css" rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">
-   		<link type="text/css" rel="stylesheet" href="stylesheets/style.css">
-   		<!--<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>-->
-	</head>
+<html ng-app="carpool">
+<head>
+    <title>UW Carpool</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">
+    <link type="text/css" rel="stylesheet" href="stylesheets/style.css">
 
-	<body>
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-		    <div class="navbar-header">
-		      <a class="navbar-brand"  href="/">
-		        UW CARPOOL
-		      </a>
-		    </div>
-	
-		 <button type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button>
-		 <button type="button" class="btn btn-default navbar-btn">Post</button>
-		
+    <!--<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>-->
+</head>
 
-		<ul class="nav navbar-right">
-		<li class="dropdown">
-		 <a href="#" class="dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dian<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">SignOut</a></li>
-          </ul>
-  </li>
-</ul>
-      
+<body>
+<nav class="navbar navbar-default" ng-controller="navbarCtrl as nbCt">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                UW CARPOOL (In development)
+            </a>
+        </div>
 
-		 </div>
-	</nav>
+        <button type="button" class="btn btn-default navbar-btn navbar-right" onclick="location.href = '/signin';"
+                ng-hide="isSigned">Sign in
+        </button>
+        <button type="button" class="btn btn-default navbar-btn navbar-right" ng-show="isSigned" onclick="location.href = '/post'">Post</button>
 
-	<section class="container">
 
-        <div class = "inv offer"  style="cursor:pointer" data-toggle="modal" data-target=".bs-example-modal-sm">
+        <ul class="nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false" ng-show="isSigned">{{signedName}}<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="" ng-click="logOut()">SignOut</a></li>
+                </ul>
+            </li>
+        </ul>
 
-            <img class = "icon" src="images/OFFER.png">
+
+    </div>
+</nav>
+
+
+<section class="container" ng-controller="invListCtrl as invCtrl">
+
+    <div id="filter">
+        <ul id="tags" class="nav nav-pills col-md-offset-5">
+
+            <li class="tag" ng-class="{'tag active':isSet('OFF')}"><a href="" ng-click=setTab('OFF')>OFFER</a></li>
+            <li class="tag" ng-class="{'tag active':isSet('REQ')}"><a href="" ng-click=setTab('REQ')>REQ</a></li>
+        </ul>
+    </div>
+
+    <br></br>
+    <div id="title" class="row">
+        <p class = "col-md-4">Time</p>
+        <p class = "col-md-4">Direction</p>
+        <p class = "col-md-4">Inviter</p>
+    </div>
+
+    <div class="offers" ng-repeat="off in offs" ng-show="dispState === 'OFF'">
+        <div class="inv offer" style="cursor:pointer" data-toggle="collapse" data-target="#{{off.id}}"
+             aria-expanded="false" aria-controls="{{off.id}}">
+
+            <img class="icon" src="images/OFFER.png">
             <div class="row detail text-center">
                 <div class="time col-md-4">
-                    <p>15:00 @ 12/12/2015</p>
+                    <p>{{off.time | date:'MM/dd/yyyy @ h:mma'}}</p>
                 </div>
-                <div class = "direction col-md-4">
-                    <p id="from">TRT</p>
-                    <img class = "arrow img-responsive" src = "images/arrow.png">
-                    <p id="to">LOO</p>
+                <div class="direction col-md-4">
+                    <p id="from">{{off.from}}</p>
+                    <img class="arrow img-responsive" src="images/arrow.png">
+                    <p id="to">{{off.to}}</p>
                 </div>
 
-                <div  class = "col-md-4">
-                    <a href="/" class = "inviter">DIAN</a>
+                <div class="col-md-4">
+                    <a href="/" class="inviter">{{off.inviter}}</a>
                 </div>
 
             </div>
+
+
         </div>
-
-	<div class = "inv req" >
-		<img class = "icon" src="images/REQ.png">
-		<div class="row detail text-center">
-			<div class="time col-md-4">
-				<p>18:00 @ 12/12/2015</p>
-			</div>
-			<div class = "direction col-md-4">
-				<p id="from">LOO</p>
-				<img class = "arrow img-responsive" src = "images/arrow.png">
-				<p id="to">TRT</p>
-			</div>
-
-			<div class="col-md-4">
-				<a href="/" class = "inviter">JIMMY</a>
-			</div>
-
-	</div>
-
-		<nav>
-	  <ul class="pagination">
-	    <li>
-	      <a href="#" aria-label="Previous">
-	        <span aria-hidden="true">&laquo;</span>
-	      </a>
-	    </li>
-	    <li class="active"><a href="#">1</a></li>
-	    <li><a href="#">2</a></li>
-	    <li><a href="#">3</a></li>
-	    <li><a href="#">4</a></li>
-	    <li><a href="#">5</a></li>
-	    <li>
-	      <a href="#" aria-label="Next">
-	        <span aria-hidden="true">&raquo;</span>
-	      </a>
-	    </li>
-	  </ul>
-	</nav>
-	</section>
-
-
-
-    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                卧槽这玩意太TM神奇了!我日了狗了!
+        <div class="descriptions">
+            <div class="panel-collapse collapse" id="{{off.id}}" tabindex="-1" role="tabpanel"
+                 aria-labelledby="CollapseOne">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{off.description}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
 
-	<script type="text/javascript" src = "javascripts/jquery.min.js"></script>
-	<script type="text/javascript" src = "javascripts/bootstrap.min.js"></script>
-	<script type="text/javascript" src = "javascripts/angular.min.js"></script>
-	</body>
+    <div class="reqs" ng-repeat="req in reqs" ng-show="dispState === 'REQ'" >
+        <div class="inv req" style="cursor:pointer" data-toggle="collapse" data-target="#{{req.id}}" >
+            <img class="icon" src="images/REQ.png">
+            <div class="row detail text-center">
+                <div class="time col-md-4">
+                    <p>{{req.time | date:'MM/dd/yyyy @ h:mma'}}</p>
+                </div>
+                <div class="direction col-md-4">
+                    <p id="from">{{req.from}}</p>
+                    <img class="arrow img-responsive" src="images/arrow.png">
+                    <p id="to">{{req.to}}</p>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="/" class="inviter">{{req.inviter}}</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="descriptions">
+            <div class="panel-collapse collapse" id="{{req.id}}" tabindex="-1" role="tabpanel"
+                 aria-labelledby="CollapseOne">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                      {{req.description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--<nav class="col-md-4 col-md-offset-4">-->
+        <!--<ul class="pagination">-->
+            <!--<li>-->
+                <!--<a href="#" aria-label="Previous">-->
+                    <!--<span aria-hidden="true">&laquo;</span>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="active"><a href="#">1</a></li>-->
+            <!--<li><a href="#">2</a></li>-->
+            <!--<li><a href="#">3</a></li>-->
+            <!--<li><a href="#">4</a></li>-->
+            <!--<li><a href="#">5</a></li>-->
+            <!--<li>-->
+                <!--<a href="#" aria-label="Next">-->
+                    <!--<span aria-hidden="true">&raquo;</span>-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</nav>-->
+</section>
+
+
+<script type="text/javascript" src="javascripts/jquery.min.js"></script>
+<script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="javascripts/angular.min.js"></script>
+<script type="text/javascript" src="javascripts/controller.js"></script>
+
+</body>
 
 
 </html>

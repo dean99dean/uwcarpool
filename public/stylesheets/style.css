@@ -13,22 +13,15 @@ a {
   color: #00B7FF;
 }
 
-.inv.req {
-	border-radius: 25px;
-    border: 2px solid blue;
+.inv {
+    border:lightgray solid;
+    border-width: 0px 0px 1px 0px;
     padding: 20px; 
   	margin-top:10px;
     height: 100px;
 
 }
-.inv.offer {
-	border-radius: 25px;
-    border: 2px solid red;
-    padding: 20px; 
-  	margin-top:10px;
-    height: 100px;
 
-}
 
 .icon {
 	position: relative;
@@ -71,22 +64,19 @@ font-family: 'Oswald', sans-serif;
 }
 @media only screen and (max-width : 992px) {
  
-    .inv.req {
-        border-radius: 25px;
-        border: 2px solid blue;
+    .inv {
+        border:lightgray solid;
+        border-width: 0px 0px 1px 0px;
         padding: 20px;
         margin-top:10px;
         height: 150px;
 
     }
-    .inv.offer {
-        border-radius: 25px;
-        border: 2px solid red;
-        padding: 20px;
-        margin-top:10px;
-        height: 150px;
 
+    #title {
+        display:none;
     }
+
 
 }
 a {
@@ -94,9 +84,23 @@ a {
 }
 
 .inv:hover {
-    background-color: #faf2cc;
+    background-color: #fffeef;
 }
 
 .inviter {
     display:inline;
 }
+
+
+#title {
+    text-align: center;
+    border:lightgray solid;
+    border-width: 0px 0px 1px 0px;
+}
+
+.navbar {
+    color: red;
+    background-color: #CC3333;
+}
+
+
