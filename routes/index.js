@@ -127,7 +127,7 @@ router.post('/submit',function(req,res) {
 
     }
 
-4
+
 });
 
 router.get('/post', function (req, res, next) {
@@ -135,6 +135,15 @@ router.get('/post', function (req, res, next) {
     else res.redirect("./");
 
 });
+
+// router.get('/geto', function (req, res, next) {
+//     var objs = [{value:20},{value:30},{value:1}];
+//     console.log("calledaaaaaaaaaaa");
+
+//     res.send(objs);
+
+// });
+
 
 
 module.exports = router;

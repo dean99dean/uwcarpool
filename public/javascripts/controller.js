@@ -42,6 +42,7 @@ app.controller('invListCtrl', function ($scope, $http, $window) {
     };
 
 
+
     $http.get('./getinvs').success(function (data) {
         console.log(data);
         console.log('get success');
@@ -50,9 +51,10 @@ app.controller('invListCtrl', function ($scope, $http, $window) {
         $scope.offs = data[1];
 
 
-        //$scope.created = function(invitor) {
-        //    if (inviter === signedName) return true;
-        //}
+
     });
 
 });
+
+    
+
